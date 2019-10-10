@@ -26,9 +26,6 @@
     "url": "https://github.com/iamolegga/nestjs-session/issues"
   },
   "homepage": "https://github.com/iamolegga/nestjs-session#readme",
-  "dependencies": {
-    "express-session": "^1.16.2"
-  },
   "devDependencies": {
     "@nestjs/common": "^6.8.2",
     "@types/express-session": "^1.15.14",
@@ -36,6 +33,7 @@
     "@types/node": "^12.7.12",
     "@types/rimraf": "^2.0.2",
     "coveralls": "^3.0.6",
+    "express-session": "^1.16.2",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
@@ -45,6 +43,10 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.6.4"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^6.8.2",
+    "express-session": "^1.16.2"
   },
   "jest": {
     "moduleFileExtensions": [
