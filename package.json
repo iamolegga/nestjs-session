@@ -27,11 +27,11 @@
   },
   "homepage": "https://github.com/iamolegga/nestjs-session#readme",
   "dependencies": {
-    "@types/express-session": "^1.15.14",
     "express-session": "^1.16.2"
   },
   "devDependencies": {
     "@nestjs/common": "^6.8.2",
+    "@types/express-session": "^1.15.14",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@types/rimraf": "^2.0.2",
