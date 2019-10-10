@@ -1,0 +1,23 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "jsRules": {
+    "no-unused-expression": true
+  },
+  "rules": {
+    "prettier": true,
+    "quotemark": [true, "single"],
+    "member-access": [false],
+    "ordered-imports": [true],
+    "import-spacing": true,
+    "member-ordering": [true],
+    "interface-name": [false],
+    "arrow-parens": false,
+    "object-literal-sort-keys": false,
+    "variable-name": {
+      "options": ["allow-leading-underscore", "allow-pascal-case"]
+    },
+    "semicolon": [true, "always", "strict-bound-class-methods"]
+  },
+  "rulesDirectory": ["tslint-plugin-prettier"]
+}

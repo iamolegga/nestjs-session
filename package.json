@@ -1,0 +1,65 @@
+{
+  "name": "nestjs-session",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "build": "rm -rf ./dist && tsc --p tsconfig.build.json",
+    "report": "cat ./coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamolegga/nestjs-session.git"
+  },
+  "keywords": [
+    "nestjs",
+    "nest.js",
+    "nest",
+    "session",
+    "express",
+    "express-session"
+  ],
+  "author": "Oleg Repin <iamolegga@gmail.com> (http://github.com/iamolegga)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamolegga/nestjs-session/issues"
+  },
+  "homepage": "https://github.com/iamolegga/nestjs-session#readme",
+  "dependencies": {
+    "@types/express-session": "^1.15.14",
+    "express-session": "^1.16.2"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^6.8.2",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.12",
+    "@types/rimraf": "^2.0.2",
+    "coveralls": "^3.0.6",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "rxjs": "^6.5.3",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.6.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "../coverage",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "testEnvironment": "node"
+  }
+}
