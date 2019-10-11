@@ -1,5 +1,5 @@
 import { InternalServerErrorException } from '@nestjs/common';
-import express from 'express';
+import * as express from 'express';
 
 export function createLookupMiddleware(
   sessionMiddleware: express.RequestHandler,

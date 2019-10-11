@@ -2,7 +2,7 @@ import {
   MiddlewareConfigProxy,
   ModuleMetadata,
 } from '@nestjs/common/interfaces';
-import session from 'express-session';
+import * as session from 'express-session';
 
 export interface NestSessionOptions {
   session: session.SessionOptions;

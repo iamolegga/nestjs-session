@@ -7,8 +7,8 @@ import {
   Provider,
   RequestMethod,
 } from '@nestjs/common';
-import express from 'express';
-import expressSession from 'express-session';
+import * as express from 'express';
+import * as expressSession from 'express-session';
 import { createLookupMiddleware } from './lookupMiddleware';
 import {
   NEST_SESSION_OPTIONS_TOKEN,

@@ -10,7 +10,6 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true
