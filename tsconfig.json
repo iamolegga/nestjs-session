@@ -14,5 +14,5 @@
     "noUnusedParameters": true,
     "strict": true
   },
-  "include": ["src", "example", "__tests__"]
+  "include": ["src", "examples", "__tests__"]
 }
