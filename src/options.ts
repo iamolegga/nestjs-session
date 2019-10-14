@@ -8,7 +8,7 @@ export interface NestSessionOptions {
   session: session.SessionOptions;
   forRoutes?: Parameters<MiddlewareConfigProxy['forRoutes']>;
   exclude?: Parameters<MiddlewareConfigProxy['exclude']>;
-  lookup?: boolean | number;
+  lookup?: number;
 }
 
 export const NEST_SESSION_OPTIONS_TOKEN = Symbol('nestjs-session/options');

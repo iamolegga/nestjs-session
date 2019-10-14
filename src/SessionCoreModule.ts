@@ -58,7 +58,7 @@ export class SessionCoreModule {
     const { lookup, exclude, forRoutes, session } = this.options;
     let middleware: express.RequestHandler = expressSession(session);
 
-    if (lookup) {
+    if (lookup !== undefined) {
       middleware = createLookupMiddleware(middleware, lookup);
     }
 
