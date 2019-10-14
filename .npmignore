@@ -1,5 +1,5 @@
 coverage/
-example/
+examples/
 src/
 .prettierrc
 .travis.yml
