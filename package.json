@@ -6,7 +6,10 @@
   "scripts": {
     "test": "jest --verbose",
     "build": "rm -rf ./dist && tsc --p tsconfig.build.json",
-    "report": "cat ./coverage/lcov.info | coveralls"
+    "report": "cat ./coverage/lcov.info | coveralls",
+    "example:in-memory": "ts-node examples/in-memory/main.ts",
+    "example:in-memory-async": "ts-node examples/in-memory-async/main.ts",
+    "example:redis-store": "ts-node examples/redis-store/main.ts"
   },
   "repository": {
     "type": "git",
@@ -32,15 +35,19 @@
   },
   "devDependencies": {
     "@nestjs/common": "^6.8.2",
+    "@nestjs/core": "^6.8.3",
+    "@nestjs/platform-express": "^6.8.3",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@types/rimraf": "^2.0.2",
     "coveralls": "^3.0.6",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
+    "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
     "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",

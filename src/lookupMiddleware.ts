@@ -3,10 +3,10 @@ import * as express from 'express';
 
 export function createLookupMiddleware(
   sessionMiddleware: express.RequestHandler,
-  tries: number | true,
+  tries: number,
 ): express.RequestHandler {
   return (req, res, next) => {
-    let left = tries === true ? 3 : tries;
+    let left = tries;
 
     function lookupSession(error?: any) {
       if (error) {
