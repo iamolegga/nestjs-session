@@ -20,7 +20,7 @@
   <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
 </p>
 
-<p align="center">Idiomatic Session Module for NestJS. Built on top of [express-session](https://npm.im/express-session) 😎</p>
+<p align="center">Idiomatic Session Module for NestJS. Built on top of <a href="https://npm.im/express-session">express-session</a>😎</p>
 
 ## Example
 
