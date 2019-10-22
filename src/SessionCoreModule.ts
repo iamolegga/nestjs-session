@@ -9,14 +9,14 @@ import {
 } from '@nestjs/common';
 import * as express from 'express';
 import * as expressSession from 'express-session';
-import { createLookupMiddleware } from './lookupMiddleware';
 import {
   NEST_SESSION_OPTIONS_TOKEN,
   NestSessionAsyncOptions,
   NestSessionOptions,
 } from './options';
+import { createRetriesMiddleware } from './retriesMiddleware';
 
-const defaultRoutes = { path: '*', method: RequestMethod.ALL };
+const defaultRoutes = [{ path: '*', method: RequestMethod.ALL }];
 
 @Global()
 @Module({})
@@ -55,19 +55,30 @@ export class SessionCoreModule {
   ) {}
 
   configure(consumer: MiddlewareConsumer) {
-    const { lookup, exclude, forRoutes, session } = this.options;
+    const {
+      retries,
+      exclude,
+      forRoutes = defaultRoutes,
+      session,
+      retriesStrategy,
+    } = this.options;
     let middleware: express.RequestHandler = expressSession(session);
 
-    if (lookup !== undefined) {
-      middleware = createLookupMiddleware(middleware, lookup);
+    if (retries !== undefined) {
+      middleware = createRetriesMiddleware(
+        middleware,
+        retries,
+        retriesStrategy,
+      );
     }
 
-    if (forRoutes) {
-      consumer.apply(middleware).forRoutes(...forRoutes);
-    } else if (exclude) {
-      consumer.apply(middleware).exclude(...exclude);
+    if (exclude) {
+      consumer
+        .apply(middleware)
+        .exclude(...exclude)
+        .forRoutes(...forRoutes);
     } else {
-      consumer.apply(middleware).forRoutes(defaultRoutes);
+      consumer.apply(middleware).forRoutes(...forRoutes);
     }
   }
 }

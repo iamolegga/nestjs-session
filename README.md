@@ -41,7 +41,7 @@ import { ViewsController } from './views.controller';
 export class AppModule {}
 ```
 
-Use in controllers with NestJS built-in `Session` decorator:
+In controllers use NestJS built-in `Session` decorator:
 
 ```ts
 // views.controller.ts
@@ -97,7 +97,8 @@ Accept `NestSessionAsyncOptions`. Returns NestJS `DynamicModule` for import.
 - `session` - __required__ - [express-session options](https://github.com/expressjs/session#options).
 - `forRoutes` - __optional__ - same as NestJS buil-in `MiddlewareConfigProxy['forRoutes']` [See exmaples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
 - `exclude` - __optional__ - same as NestJS buil-in `MiddlewareConfigProxy['exclude']` [See exmaples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should not have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
-- `lookup` - __optional__ - `number` - by default if your session store lost connection to database it will return session as `undefined`, and no errors will be thrown, and then you need to check session in controller. But you can set this property how many times it should retry to get session, and on fail `InternalServerErrorException` will be thrown. If you don't want retires, but just want to `InternalServerErrorException` to be throw, then set to `0`. Set this option, if you dont't want manualy check session inside controllers.
+- `retries` - __optional__ - `number` - by default if your session store lost connection to database it will return session as `undefined`, and no errors will be thrown, and then you need to check session in controller. But you can set this property how many times it should retry to get session, and on fail `InternalServerErrorException` will be thrown. If you don't want retires, but just want to `InternalServerErrorException` to be throw, then set to `0`. Set this option, if you dont't want manualy check session inside controllers.
+- `retriesStrategy` - __optional__ - `(attempt: number) => number` - function that returns number of ms to wait between next attempt. Not calls on first attempt.
 
 ### NestSessionAsyncOptions
 

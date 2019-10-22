@@ -1,27 +1,34 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import * as express from 'express';
 
-export function createLookupMiddleware(
+type WaitingStrategy = (attempt: number) => number;
+
+export function createRetriesMiddleware(
   sessionMiddleware: express.RequestHandler,
-  tries: number,
+  retries: number,
+  retiesStrategy: WaitingStrategy = () => 0,
 ): express.RequestHandler {
   return (req, res, next) => {
-    let left = tries;
+    let attempt = 0;
 
-    function lookupSession(error?: any) {
+    async function lookupSession(error?: any) {
       if (error) {
         return next(error);
       }
-
-      left -= 1;
 
       if (req.session !== undefined) {
         return next();
       }
 
-      if (left < 0) {
+      if (attempt > retries) {
         return next(new InternalServerErrorException('Cannot create session'));
       }
+
+      if (attempt !== 0) {
+        await new Promise(r => setTimeout(r, retiesStrategy(attempt)));
+      }
+
+      attempt++;
 
       sessionMiddleware(req, res, lookupSession);
     }
