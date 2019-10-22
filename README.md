@@ -1,7 +1,26 @@
-# Nestjs session
+<h1 align="center">NestJS-Session</h1>
 
-Idiomatic Session Module for NestJS.
-Built on top of [express-session](https://npm.im/express-session) 😎
+<p align="center">
+  <a href="https://www.npmjs.com/package/nestjs-session">
+    <img alt="npm" src="https://img.shields.io/npm/v/nestjs-session" />
+  </a>
+  <a href="https://travis-ci.org/iamolegga/nestjs-session">
+    <img alt="Travis (.org)" src="https://img.shields.io/travis/iamolegga/nestjs-session" />
+  </a>
+  <a href="https://coveralls.io/github/iamolegga/nestjs-session?branch=master">
+    <img alt="Coverage Status" src="https://coveralls.io/repos/github/iamolegga/nestjs-session/badge.svg?branch=master" />
+  </a>
+  <a href="https://snyk.io/test/github/iamolegga/nestjs-session">
+    <img alt="Snyk Vulnerabilities for npm package" src="https://img.shields.io/snyk/vulnerabilities/npm/nestjs-session" />
+  </a>
+  <a href="https://libraries.io/npm/nestjs-session">
+    <img alt="Libraries.io dependency status for latest release" src="https://img.shields.io/librariesio/release/npm/nestjs-session">
+  </a>
+  <img alt="Dependabot" src="https://badgen.net/dependabot/iamolegga/nestjs-session/?icon=dependabot">
+  <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
+</p>
+
+<p align="center">Idiomatic Session Module for NestJS. Built on top of [express-session](https://npm.im/express-session) 😎</p>
 
 ## Example
 
