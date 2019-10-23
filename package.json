@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/iamolegga/nestjs-session#readme",
   "dependencies": {
-    "@types/express-session": "^1.15.14",
+    "@types/express-session": "^1.15.15",
     "express-session": "^1.17.0"
   },
   "devDependencies": {
