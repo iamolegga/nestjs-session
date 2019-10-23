@@ -34,7 +34,6 @@ import { ViewsController } from './views.controller';
 
 @Module({
   imports: [
-
     // sync params:
 
     SessionModule.forRoot({
@@ -76,9 +75,23 @@ export class ViewsController {
 }
 ```
 
-__BE AWARE THAT THIS EXAMPLE IS NOT FOR PRODUCTION! IT USES IN-MEMORY STORE, SO YOUR DATA WILL BE LOST ON RESTART. USE OTHER [STORES](https://github.com/expressjs/session#compatible-session-stores)__
+**BE AWARE THAT THIS EXAMPLE IS NOT FOR PRODUCTION! IT USES IN-MEMORY STORE, SO YOUR DATA WILL BE LOST ON RESTART. USE OTHER [STORES](https://github.com/expressjs/session#compatible-session-stores)**
 
 See [redis-store](https://github.com/tj/connect-redis) example in `examples` folder.
+
+To run examples:
+
+```sh
+git clone https://github.com/iamolegga/nestjs-session.git
+cd nestjs-session
+npm i
+cd examples/in-memory # or `cd examples/in-memory-async` or `cd examples/redis-store`
+npm i
+npm start
+```
+
+For redis exmaple you should start redis on localhost:6379.
+If you have docker you can start redis image by `npm run redis`.
 
 ## Install
 
@@ -113,16 +126,16 @@ Accept `NestSessionAsyncOptions`. Returns NestJS `DynamicModule` for import.
 
 `NestSessionOptions` is interface of all options, has next properties:
 
-- `session` - __required__ - [express-session options](https://github.com/expressjs/session#options).
-- `forRoutes` - __optional__ - same as NestJS buil-in `MiddlewareConfigProxy['forRoutes']` [See exmaples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
-- `exclude` - __optional__ - same as NestJS buil-in `MiddlewareConfigProxy['exclude']` [See exmaples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should not have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
-- `retries` - __optional__ - `number` - by default if your session store lost connection to database it will return session as `undefined`, and no errors will be thrown, and then you need to check session in controller. But you can set this property how many times it should retry to get session, and on fail `InternalServerErrorException` will be thrown. If you don't want retires, but just want to `InternalServerErrorException` to be throw, then set to `0`. Set this option, if you dont't want manualy check session inside controllers.
-- `retriesStrategy` - __optional__ - `(attempt: number) => number` - function that returns number of ms to wait between next attempt. Not calls on first attempt.
+- `session` - **required** - [express-session options](https://github.com/expressjs/session#options).
+- `forRoutes` - **optional** - same as NestJS buil-in `MiddlewareConfigProxy['forRoutes']` [See exmaples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
+- `exclude` - **optional** - same as NestJS buil-in `MiddlewareConfigProxy['exclude']` [See exmaples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should not have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
+- `retries` - **optional** - `number` - by default if your session store lost connection to database it will return session as `undefined`, and no errors will be thrown, and then you need to check session in controller. But you can set this property how many times it should retry to get session, and on fail `InternalServerErrorException` will be thrown. If you don't want retires, but just want to `InternalServerErrorException` to be throw, then set to `0`. Set this option, if you dont't want manualy check session inside controllers.
+- `retriesStrategy` - **optional** - `(attempt: number) => number` - function that returns number of ms to wait between next attempt. Not calls on first attempt.
 
 ### NestSessionAsyncOptions
 
 `NestSessionAsyncOptions` is interface of options to create session module, that depends on other modules, has next properties:
 
-- `imports` - __optional__ - modules, that session module depends on. See [official docs](https://docs.nestjs.com/modules).
-- `inject` - __optional__ - providers from `imports`-property modules, that will be passed as arguments to `useFactory` method.
-- `useFactory` - __required__ - method, that returns `NestSessionOptions`.
+- `imports` - **optional** - modules, that session module depends on. See [official docs](https://docs.nestjs.com/modules).
+- `inject` - **optional** - providers from `imports`-property modules, that will be passed as arguments to `useFactory` method.
+- `useFactory` - **required** - method, that returns `NestSessionOptions`.

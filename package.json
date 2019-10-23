@@ -7,7 +7,6 @@
     "test": "jest --verbose",
     "build": "rm -rf ./dist && tsc --p tsconfig.build.json",
     "report": "cat ./coverage/lcov.info | coveralls",
-    "example:in-memory": "ts-node examples/in-memory/main.ts",
     "example:in-memory-async": "ts-node examples/in-memory-async/main.ts",
     "example:redis-store": "ts-node examples/redis-store/main.ts"
   },
@@ -50,7 +49,6 @@
     "rxjs": "^6.5.3",
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
-    "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
