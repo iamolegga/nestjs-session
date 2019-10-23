@@ -13,8 +13,8 @@
   <a href="https://snyk.io/test/github/iamolegga/nestjs-session">
     <img alt="Snyk Vulnerabilities for npm package" src="https://img.shields.io/snyk/vulnerabilities/npm/nestjs-session" />
   </a>
-  <a href="https://libraries.io/npm/nestjs-session">
-    <img alt="Libraries.io dependency status for latest release" src="https://img.shields.io/librariesio/release/npm/nestjs-session">
+  <a href="https://david-dm.org/iamolegga/nestjs-session">
+    <img alt="Dependencies status" src="https://badgen.net/david/dep/iamolegga/nestjs-session">
   </a>
   <img alt="Dependabot" src="https://badgen.net/dependabot/iamolegga/nestjs-session/?icon=dependabot">
   <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
