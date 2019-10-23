@@ -6,9 +6,7 @@
   "scripts": {
     "test": "jest --verbose",
     "build": "rm -rf ./dist && tsc --p tsconfig.build.json",
-    "report": "cat ./coverage/lcov.info | coveralls",
-    "example:in-memory-async": "ts-node examples/in-memory-async/main.ts",
-    "example:redis-store": "ts-node examples/redis-store/main.ts"
+    "report": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -39,13 +37,11 @@
     "@nestjs/platform-fastify": "^6.8.3",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
-    "@types/rimraf": "^2.0.2",
     "@types/supertest": "^2.0.8",
     "coveralls": "^3.0.6",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
