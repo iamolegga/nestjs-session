@@ -10,6 +10,9 @@
   <a href="https://coveralls.io/github/iamolegga/nestjs-session?branch=master">
     <img alt="Coverage Status" src="https://coveralls.io/repos/github/iamolegga/nestjs-session/badge.svg?branch=master" />
   </a>
+  <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
+</p>
+<p align="center">
   <a href="https://snyk.io/test/github/iamolegga/nestjs-session">
     <img alt="Snyk Vulnerabilities for npm package" src="https://img.shields.io/snyk/vulnerabilities/npm/nestjs-session" />
   </a>
@@ -17,7 +20,9 @@
     <img alt="Dependencies status" src="https://badgen.net/david/dep/iamolegga/nestjs-session">
   </a>
   <img alt="Dependabot" src="https://badgen.net/dependabot/iamolegga/nestjs-session/?icon=dependabot">
-  <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
+  <a href="https://codeclimate.com/github/iamolegga/nestjs-session">
+    <img alt="Maintainability" src="https://badgen.net/codeclimate/maintainability/iamolegga/nestjs-session">
+  </a>
 </p>
 
 <p align="center">Idiomatic Session Module for NestJS. Built on top of <a href="https://npm.im/express-session">express-session</a>😎</p>
