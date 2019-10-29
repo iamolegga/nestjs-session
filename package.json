@@ -28,6 +28,7 @@
   "homepage": "https://github.com/iamolegga/nestjs-session#readme",
   "dependencies": {
     "@types/express-session": "^1.15.15",
+    "create-nestjs-middleware-module": "^0.1.0",
     "express-session": "^1.17.0"
   },
   "devDependencies": {
