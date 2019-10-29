@@ -51,9 +51,6 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.6.4"
   },
-  "peerDependencies": {
-    "@nestjs/common": "^6.8.2"
-  },
   "jest": {
     "moduleFileExtensions": [
       "js",
