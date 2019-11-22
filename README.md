@@ -27,6 +27,10 @@
 
 <p align="center">Idiomatic Session Module for NestJS. Built on top of <a href="https://npm.im/express-session">express-session</a>😎</p>
 
+This module realise session with storing it's data in one of [external stores](https://github.com/expressjs/session#compatible-session-stores) and passing ID of session to client via `Cookie`/`Set-Cookie` headers.
+
+If you want to store data directly in `Cookie`, you can look at [nestjs-cookie-session](https://github.com/iamolegga/nestjs-cookie-session).
+
 ## Example
 
 Register module:
