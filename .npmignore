@@ -3,6 +3,8 @@ coverage/
 examples/
 src/
 .github/
+**/*.tsbuildinfo
+.mergify.yml
 .prettierrc
 .travis.yml
 tsconfig.build.json
