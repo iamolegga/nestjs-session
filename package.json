@@ -38,7 +38,7 @@
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/platform-fastify": "^7.0.0",
     "@types/jest": "^26.0.0",
-    "@types/node": "^14.0.1",
+    "@types/node": "^15.12.4",
     "@types/supertest": "^2.0.8",
     "coveralls": "^3.0.6",
     "jest": "^25.1.0",
