@@ -1,7 +1,7 @@
 import * as ConnectRedis from 'connect-redis';
 import * as session from 'express-session';
 import { RedisService } from 'nestjs-redis';
-import { NestSessionOptions, SessionModule } from '../../';
+import { NestSessionOptions, SessionModule } from '../../../dist';
 import { ConfigModule } from './config.module';
 import { ConfigService } from './config.service';
 import { Redis } from './redis.module';

@@ -25,7 +25,7 @@ export function createRetriesMiddleware(
       }
 
       if (attempt !== 0) {
-        await new Promise(r => setTimeout(r, retiesStrategy(attempt)));
+        await new Promise((r) => setTimeout(r, retiesStrategy(attempt)));
       }
 
       attempt++;

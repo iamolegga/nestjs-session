@@ -4,11 +4,9 @@
   <a href="https://www.npmjs.com/package/nestjs-session">
     <img alt="npm" src="https://img.shields.io/npm/v/nestjs-session" />
   </a>
-  <a href="https://travis-ci.org/iamolegga/nestjs-session">
-    <img alt="Travis (.org)" src="https://img.shields.io/travis/iamolegga/nestjs-session" />
-  </a>
-  <a href="https://coveralls.io/github/iamolegga/nestjs-session?branch=master">
-    <img alt="Coverage Status" src="https://coveralls.io/repos/github/iamolegga/nestjs-session/badge.svg?branch=master" />
+  <img alt="GitHub branch checks state" src="https://badgen.net/github/checks/iamolegga/nestjs-session" />
+  <a href="https://codeclimate.com/github/iamolegga/nestjs-session/test_coverage">
+    <img src="https://api.codeclimate.com/v1/badges/08bcbca7b2da14b3bbfd/test_coverage" />
   </a>
   <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
 </p>
@@ -27,7 +25,7 @@
 
 <p align="center">Idiomatic Session Module for NestJS. Built on top of <a href="https://npm.im/express-session">express-session</a>😎</p>
 
-This module realise session with storing it's data in one of [external stores](https://github.com/expressjs/session#compatible-session-stores) and passing ID of session to client via `Cookie`/`Set-Cookie` headers.
+This module implements a session with storing data in one of [external stores](https://github.com/expressjs/session#compatible-session-stores) and passing ID of session to client via `Cookie`/`Set-Cookie` headers.
 
 If you want to store data directly in `Cookie`, you can look at [nestjs-cookie-session](https://github.com/iamolegga/nestjs-cookie-session).
 
@@ -84,7 +82,11 @@ export class ViewsController {
 }
 ```
 
+---
+
 **BE AWARE THAT THIS EXAMPLE IS NOT FOR PRODUCTION! IT USES IN-MEMORY STORE, SO YOUR DATA WILL BE LOST ON RESTART. USE OTHER [STORES](https://github.com/expressjs/session#compatible-session-stores)**
+
+---
 
 See [redis-store](https://github.com/tj/connect-redis) example in `examples` folder.
 
@@ -94,24 +96,19 @@ To run examples:
 git clone https://github.com/iamolegga/nestjs-session.git
 cd nestjs-session
 npm i
-cd examples/in-memory # or `cd examples/in-memory-async` or `cd examples/redis-store`
+npm run build
+cd examples/in-memory # or `cd examples/redis-store`
 npm i
 npm start
 ```
 
-For redis example you should start redis on localhost:6379.
-If you have docker you can start redis image by `npm run redis`.
+For Redis example, you should start Redis on localhost:6379.
+If you have Docker installed you can start Redis image by `npm run redis` from `redis-store` directory.
 
 ## Install
 
 ```sh
-npm i nestjs-session
-```
-
-or
-
-```sh
-yarn add nestjs-session
+npm i nestjs-session express-session @types/express-session
 ```
 
 ## API
@@ -133,21 +130,29 @@ Accept `NestSessionAsyncOptions`. Returns NestJS `DynamicModule` for import.
 
 ### NestSessionOptions
 
-`NestSessionOptions` is interface of all options, has next properties:
+`NestSessionOptions` is the interface of all options. It has next properties:
 
 - `session` - **required** - [express-session options](https://github.com/expressjs/session#options).
 - `forRoutes` - **optional** - same as NestJS buil-in `MiddlewareConfigProxy['forRoutes']` [See examples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
 - `exclude` - **optional** - same as NestJS buil-in `MiddlewareConfigProxy['exclude']` [See examples in official docs](https://docs.nestjs.com/middleware#applying-middleware). Specify routes, that should not have access to session. If `forRoutes` and `exclude` will not be set, then sessions will be set to all routes.
-- `retries` - **optional** - `number` - by default if your session store lost connection to database it will return session as `undefined`, and no errors will be thrown, and then you need to check session in controller. But you can set this property how many times it should retry to get session, and on fail `InternalServerErrorException` will be thrown. If you don't want retires, but just want to `InternalServerErrorException` to be throw, then set to `0`. Set this option, if you dont't want manualy check session inside controllers.
+- `retries` - **optional** - `number` - by default if your session store lost connection to database it will return session as `undefined`, and no errors will be thrown, and then you need to check session in controller. But you can set this property how many times it should retry to get session, and on fail `InternalServerErrorException` will be thrown. If you don't want retries, but just want to `InternalServerErrorException` to be throw, then set to `0`. Set this option, if you dont't want manualy check session inside controllers.
 - `retriesStrategy` - **optional** - `(attempt: number) => number` - function that returns number of ms to wait between next attempt. Not calls on first attempt.
 
 ### NestSessionAsyncOptions
 
-`NestSessionAsyncOptions` is interface of options to create session module, that depends on other modules, has next properties:
+`NestSessionAsyncOptions` is the interface of options to create session module, that depends on other modules. It has next properties:
 
 - `imports` - **optional** - modules, that session module depends on. See [official docs](https://docs.nestjs.com/modules).
 - `inject` - **optional** - providers from `imports`-property modules, that will be passed as arguments to `useFactory` method.
 - `useFactory` - **required** - method, that returns `NestSessionOptions`.
+
+## Migration
+
+### v2
+
+`express-session` and `@types/express-session` are moved to peer dependencies, so you can update them independently.
+
+---
 
 <h2 align="center">Do you use this library?<br/>Don't be shy to give it a star! ★</h2>
 
@@ -186,6 +191,15 @@ Idiomatic cookie session module for NestJS. Built on top of [cookie-session](htt
 [![npm](https://img.shields.io/npm/dm/nestjs-roles?style=flat-square)](https://www.npmjs.com/package/nestjs-roles)
 
 Type safe roles guard and decorator made easy
+
+---
+
+[nestjs-injectable](https://github.com/segmentstream/nestjs-injectable)
+
+[![GitHub stars](https://img.shields.io/github/stars/segmentstream/nestjs-injectable?style=flat-square)](https://github.com/segmentstream/nestjs-injectable)
+[![npm](https://img.shields.io/npm/dm/nestjs-injectable?style=flat-square)](https://www.npmjs.com/package/nestjs-injectable)
+
+`@Injectable()` on steroids that simplifies work with inversion of control in your hexagonal architecture
 
 ---
 

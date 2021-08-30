@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { SessionModule } from '../../';
+import { SessionModule } from '../../../dist';
 import { AppController } from './app.controller';
 
 @Module({
