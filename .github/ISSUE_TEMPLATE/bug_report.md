@@ -1,21 +1,23 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: '[BUG] '
+title: "[BUG] "
 labels: bug
 assignees: iamolegga
+
 ---
 
 <!-- Please don't delete this template or we'll close your issue -->
 <!-- Before creating an issue please make sure you are using the latest version. -->
 
+[ ] I've read [the docs](https://github.com/iamolegga/create-nestjs-middleware-module/blob/master/README.md)
+
+[ ] I couldn't find the same [bug](https://github.com/iamolegga/create-nestjs-middleware-module/issues?q=is%3Aissue+label%3Abug)
+
 **What is the current behavior?**
 
-**Please provide the steps to reproduce.**
-
-<!-- A great way to do this is to provide your configuration via a GitHub gist. -->
-<!-- Best provide a minimal reproduceable repo -->
-
 **What is the expected behavior?**
+
+**Please provide minimal example repo. Without it this issue will be closed**
 
 **Please mention other relevant information such as Node.js version and Operating System.**
