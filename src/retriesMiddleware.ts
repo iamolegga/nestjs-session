@@ -8,10 +8,10 @@ export function createRetriesMiddleware(
   retries: number,
   retiesStrategy: WaitingStrategy = () => 0,
 ): express.RequestHandler {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     let attempt = 0;
 
-    async function lookupSession(error?: any) {
+    async function lookupSession(error?: unknown) {
       if (error) {
         return next(error);
       }
@@ -33,6 +33,6 @@ export function createRetriesMiddleware(
       sessionMiddleware(req, res, lookupSession);
     }
 
-    lookupSession();
+    await lookupSession();
   };
 }

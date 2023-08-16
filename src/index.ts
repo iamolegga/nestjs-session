@@ -3,7 +3,8 @@ import {
   createModule,
   SyncOptions,
 } from 'create-nestjs-middleware-module';
-import * as expressSession from 'express-session';
+import expressSession from 'express-session';
+
 import { createRetriesMiddleware } from './retriesMiddleware';
 
 interface Options {

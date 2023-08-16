@@ -1,4 +1,4 @@
-import * as request from 'supertest';
+import request from 'supertest';
 
 export async function doubleRequest(
   server: Parameters<typeof request>[0],

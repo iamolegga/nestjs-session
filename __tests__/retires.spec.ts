@@ -2,9 +2,10 @@ import { Controller, Get, Module, Session } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Handler } from 'express';
 import { MemoryStore } from 'express-session';
-import * as request from 'supertest';
+import request from 'supertest';
+
 import { SessionModule } from '../src';
-import { fastifyExtraWait } from './utils/fastifyExtraWait';
+
 import { platforms } from './utils/platforms';
 import { doubleRequest } from './utils/request';
 
@@ -22,7 +23,6 @@ describe('retries', () => {
 
         const store = new MemoryStore();
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRoot({ session: { secret: 'test', store } }),
@@ -39,9 +39,8 @@ describe('retries', () => {
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
 
-        (store as any).emit('disconnect');
+        store.emit('disconnect');
 
         const result = await request(server).get('/');
         await app.close();
@@ -52,7 +51,6 @@ describe('retries', () => {
       it('controllers should be blocked with disconnected store and set retries', async () => {
         let isControllerCalled = false;
 
-        // tslint:disable-next-line max-classes-per-file
         @Controller('/')
         class TestController {
           @Get()
@@ -63,7 +61,6 @@ describe('retries', () => {
 
         const store = new MemoryStore();
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRoot({
@@ -83,9 +80,8 @@ describe('retries', () => {
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
 
-        (store as any).emit('disconnect');
+        store.emit('disconnect');
         const result = await request(server).get('/');
         await app.close();
 
@@ -96,7 +92,6 @@ describe('retries', () => {
       it('retries should work when reconnected', async () => {
         let isControllerCalled = false;
 
-        // tslint:disable-next-line max-classes-per-file
         @Controller('/')
         class TestController {
           @Get()
@@ -107,7 +102,6 @@ describe('retries', () => {
 
         const store = new MemoryStore();
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRoot({
@@ -127,15 +121,14 @@ describe('retries', () => {
         app.use(((_req, _res, next) => {
           next();
           process.nextTick(() => {
-            (store as any).emit('connect');
+            store.emit('connect');
           });
         }) as Handler);
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
 
-        (store as any).emit('disconnect');
+        store.emit('disconnect');
         const reqPromise = request(server).get('/');
 
         const result = await reqPromise;
@@ -148,7 +141,6 @@ describe('retries', () => {
       it('controllers should be blocked with error in store and set retries', async () => {
         let callTimes = 0;
 
-        // tslint:disable-next-line max-classes-per-file
         @Controller('/')
         class TestController {
           @Get()
@@ -160,7 +152,6 @@ describe('retries', () => {
         const store = new MemoryStore();
         store.get = (_sid, cb) => cb(new Error());
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRoot({
@@ -180,7 +171,6 @@ describe('retries', () => {
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
 
         const [, result] = await doubleRequest(server);
         await app.close();

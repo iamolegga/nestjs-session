@@ -1,7 +1,8 @@
 import { Controller, Get, Module, Session } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+
 import { SessionModule } from '../src';
-import { fastifyExtraWait } from './utils/fastifyExtraWait';
+
 import { platforms } from './utils/platforms';
 import { doubleRequest } from './utils/request';
 
@@ -22,7 +23,6 @@ describe(SessionModule.forRootAsync.name, () => {
           }
         }
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRootAsync({
@@ -41,7 +41,6 @@ describe(SessionModule.forRootAsync.name, () => {
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
         const [res1, res2] = await doubleRequest(server);
         await app.close();
 

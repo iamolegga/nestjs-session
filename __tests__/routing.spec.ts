@@ -6,8 +6,9 @@ import {
   Session,
 } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+
 import { SessionModule } from '../src';
-import { fastifyExtraWait } from './utils/fastifyExtraWait';
+
 import { platforms } from './utils/platforms';
 import { doubleRequest } from './utils/request';
 
@@ -37,7 +38,6 @@ describe('routing', () => {
           }
         }
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRoot({
@@ -57,7 +57,6 @@ describe('routing', () => {
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
         const [sessRes1, sessRes2] = await doubleRequest(
           server,
           '/with-session',
@@ -76,7 +75,6 @@ describe('routing', () => {
       });
 
       it('exclude', async () => {
-        // tslint:disable-next-line max-classes-per-file
         @Controller('/')
         class TestController {
           @Get('with-session')
@@ -99,7 +97,6 @@ describe('routing', () => {
           }
         }
 
-        // tslint:disable-next-line max-classes-per-file
         @Module({
           imports: [
             SessionModule.forRoot({
@@ -120,7 +117,6 @@ describe('routing', () => {
         const server = app.getHttpServer();
 
         await app.init();
-        await fastifyExtraWait(PlatformAdapter, app);
         const [sessRes1, sessRes2] = await doubleRequest(
           server,
           '/with-session',
