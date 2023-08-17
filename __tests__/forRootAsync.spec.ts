@@ -1,7 +1,7 @@
 import { Controller, Get, Module, Session } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { SessionModule } from '../src';
+import { NestSessionOptions, SessionModule } from '../src';
 
 import { platforms } from './utils/platforms';
 import { doubleRequest } from './utils/request';
@@ -26,7 +26,11 @@ describe(SessionModule.forRootAsync.name, () => {
         @Module({
           imports: [
             SessionModule.forRootAsync({
-              useFactory: () => ({ session: { secret: 'test' } }),
+              useFactory: ():
+                | NestSessionOptions
+                | Promise<NestSessionOptions> => ({
+                session: { secret: 'test' },
+              }),
             }),
           ],
           controllers: [TestController],
