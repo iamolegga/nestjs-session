@@ -31,7 +31,7 @@
     "express-session": "^1.17.2",
     "nestjs-redis": "^1.3.3",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.0.0",
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
