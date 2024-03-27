@@ -23,7 +23,7 @@
   "dependencies": {
     "@nestjs/common": "^10.2.8",
     "@nestjs/core": "^9.0.5",
-    "@nestjs/platform-express": "^10.2.8",
+    "@nestjs/platform-express": "^10.3.6",
     "@types/express-session": "^1.17.4",
     "express-session": "^1.17.2",
     "reflect-metadata": "^0.1.13",
