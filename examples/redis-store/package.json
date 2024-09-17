@@ -24,7 +24,7 @@
   "dependencies": {
     "@nestjs/common": "^8.0.7",
     "@nestjs/core": "^9.0.5",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-express": "^10.4.2",
     "@types/connect-redis": "^0.0.17",
     "@types/express-session": "^1.17.4",
     "connect-redis": "^6.0.0",
