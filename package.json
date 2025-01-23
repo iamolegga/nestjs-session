@@ -1,6 +1,6 @@
 {
   "name": "nestjs-session",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Idiomatic NestJS module for session",
   "main": "index.js",
   "typings": "index.d.ts",
