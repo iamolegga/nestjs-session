@@ -10,7 +10,7 @@ export async function doubleRequest(
 
   const result2 = await request(server)
     .get(path)
-    .set('Cookie', cookie || []);
+    .set('Cookie', cookie ? [cookie] : []);
 
   return [result1, result2] as [request.Response, request.Response];
 }
