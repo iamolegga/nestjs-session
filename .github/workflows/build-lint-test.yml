@@ -6,17 +6,26 @@ on:
 jobs:
   build-lint-test:
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         nestjs-version:
           - "8"
           - "9"
           - "10"
+          - "11"
         nodejs-version:
-          - 16
-          - 18
           - 20
-
+          - 22
+        include:
+          - nestjs-version: 8
+            typescript-version: 4
+          - nestjs-version: 9
+            typescript-version: 4
+          - nestjs-version: 10
+            typescript-version: 5
+          - nestjs-version: 11
+            typescript-version: 5
+    
     runs-on: ubuntu-latest
 
     steps:
@@ -33,6 +42,7 @@ jobs:
                 @nestjs/common@${{ matrix.nestjs-version }} \
                 @nestjs/platform-express@${{ matrix.nestjs-version }} \
                 @types/node@${{ matrix.nodejs-version }} \
+                typescript@${{ matrix.typescript-version }} \
                 -D
       - run: npm run lint
       - uses: actions/cache@v3
