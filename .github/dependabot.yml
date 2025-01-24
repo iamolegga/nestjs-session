@@ -7,5 +7,5 @@ updates:
     time: "02:00"
   open-pull-requests-limit: 10
   ignore:
-    - dependency-name: 'typescript'
-      versions: [">= 5.0.0"]
+    - dependency-name: "reflect-metadata"
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
