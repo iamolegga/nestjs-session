@@ -22,7 +22,7 @@
     "redis": "docker run -p 6379:6379 redis"
   },
   "dependencies": {
-    "@nestjs/common": "^8.0.7",
+    "@nestjs/common": "^11.0.16",
     "@nestjs/core": "^9.0.5",
     "@nestjs/platform-express": "^8.0.0",
     "@types/connect-redis": "^0.0.17",
