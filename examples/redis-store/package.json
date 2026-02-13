@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.0.16",
-    "@nestjs/core": "^9.0.5",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/core": "^11.1.13",
+    "@nestjs/platform-express": "^11.1.13",
     "@types/connect-redis": "^0.0.17",
     "@types/express-session": "^1.17.4",
     "connect-redis": "^6.0.0",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@nestjs/cli": "^11.0.16",
     "@nestjs/schematics": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
+    "@nestjs/testing": "^11.1.13",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.0.0",
