@@ -47,7 +47,7 @@
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.6",
+    "jest": "^30.2.0",
     "prettier": "^2.3.2",
     "supertest": "^7.0.0",
     "ts-jest": "^27.0.3",
