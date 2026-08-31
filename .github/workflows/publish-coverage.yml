@@ -8,18 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6.1.0
         with:
           path: coverage
           # restore cache from build-lint-test wf with key=sha-(oneof nestjs version)-(oneof nodejs version)
-          key: ${{ github.sha }}-11-22
+          key: ${{ github.sha }}-12-24
 
-      - uses: paambaati/codeclimate-action@v2.7.5
+      - uses: qltysh/qlty-action/coverage@v2.3.0
         with:
-          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
+            token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+            files: ${{github.workspace}}/coverage/lcov.info

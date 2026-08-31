@@ -7,21 +7,28 @@ jobs:
   publish-alpha:
     if: github.ref == 'refs/heads/master' && github.actor != 'dependabot[bot]' && github.actor != 'mergify[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7.0.0
         with:
-          node-version: 22
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
+
+      # trusted publishing over OIDC needs npm >= 11.5.1
+      - run: npm install -g npm@latest
 
       - run: npm ci
 
+      - run: npm run build
+
       - run: npm version --no-git-tag-version $(git describe --abbrev=0 --tags)-alpha.$(git rev-parse --short=6 ${{ github.sha }}) || true
 
+      # authenticated over OIDC, provenance is generated automatically
       - run: npm publish --tag alpha || true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
