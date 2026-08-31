@@ -1,0 +1,29 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
+  "formatter": { "indentStyle": "space" },
+  "javascript": {
+    "formatter": { "quoteStyle": "single" },
+    // NestJS builds its DI on constructor parameter decorators, which Biome
+    // refuses to parse without this.
+    "parser": { "unsafeParameterDecoratorsEnabled": true }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        // Unsafe here: `emitDecoratorMetadata` derives `design:paramtypes`
+        // from the imported bindings, so rewriting a constructor parameter
+        // type as a type-only import erases the metadata and NestJS can no
+        // longer resolve the dependency.
+        "useImportType": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      // Test helpers deliberately erase the platform-adapter generics, which
+      // is what these `any`s are for.
+      "includes": ["__tests__/**"],
+      "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } }
+    }
+  ]
+}

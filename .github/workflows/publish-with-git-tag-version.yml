@@ -6,30 +6,41 @@ on:
 jobs:
   publish-with-git-tag-version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7.0.0
         with:
-          node-version: 22
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
+
+      # trusted publishing over OIDC needs npm >= 11.5.1
+      - run: npm install -g npm@latest
 
       - run: npm ci
 
-      - run: npm version --no-git-tag-version $(git describe --abbrev=0 --tags)
+      - run: npm run build
+
+      # --allow-same-version so that a release can be re-cut from a master
+      # that was already bumped by an earlier, failed run
+      - run: npm version --no-git-tag-version --allow-same-version $(git describe --abbrev=0 --tags)
+
+      # publish before pushing the version commit, so that a failed publish
+      # doesn't leave master with a version that is not on the registry.
+      # authenticated over OIDC, provenance is generated automatically
+      - run: npm publish
 
       - run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -m "update version" -a
+          git commit -m "update version" -a || echo "version is already up to date"
 
-      - uses: ad-m/github-push-action@master
+      - uses: ad-m/github-push-action@v1.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -9,31 +9,24 @@ jobs:
       fail-fast: false
       matrix:
         nestjs-version:
-          - "8"
-          - "9"
-          - "10"
+          # 11.2.0 is the floor create-nestjs-middleware-module's default
+          # wildcard route needs; see its build-lint-test.yml.
+          - "11.2.0"
           - "11"
+          - "12"
         nodejs-version:
-          - 20
           - 22
-        include:
-          - nestjs-version: 8
-            typescript-version: 4
-          - nestjs-version: 9
-            typescript-version: 4
-          - nestjs-version: 10
-            typescript-version: 5
-          - nestjs-version: 11
-            typescript-version: 5
-    
+          - 24
+          - 26
+
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: ${{ matrix.nodejs-version }}
       - run: npm ci
@@ -42,10 +35,9 @@ jobs:
                 @nestjs/common@${{ matrix.nestjs-version }} \
                 @nestjs/platform-express@${{ matrix.nestjs-version }} \
                 @types/node@${{ matrix.nodejs-version }} \
-                typescript@${{ matrix.typescript-version }} \
                 -D
       - run: npm run lint
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6.1.0
         with:
           path: coverage
           key: ${{ github.sha }}-${{ matrix.nestjs-version }}-${{ matrix.nodejs-version }}

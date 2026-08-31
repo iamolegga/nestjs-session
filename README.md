@@ -8,18 +8,18 @@
     <img alt="npm" src="https://img.shields.io/npm/dm/nestjs-session" />
   </a>
   <a href="https://github.com/iamolegga/nestjs-session/actions">
-    <img alt="GitHub branch checks state" src="https://badgen.net/github/checks/iamolegga/nestjs-session" />
+    <img alt="GitHub branch checks state" src="https://badgen.net/github/checks/iamolegga/nestjs-session/master">
   </a>
-  <a href="https://codeclimate.com/github/iamolegga/nestjs-session/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/08bcbca7b2da14b3bbfd/test_coverage" />
+  <a href="https://qlty.sh/gh/iamolegga/projects/nestjs-session">
+    <img src="https://qlty.sh/gh/iamolegga/projects/nestjs-session/coverage.svg" alt="Code Coverage" />
   </a>
   <a href="https://snyk.io/test/github/iamolegga/nestjs-session">
     <img alt="Known Vulnerabilities" src="https://snyk.io/test/github/iamolegga/nestjs-session/badge.svg" />
   </a>
   <a href="https://libraries.io/npm/nestjs-session">
-    <img alt="Libraries.io" src="https://img.shields.io/librariesio/release/npm/nestjs-session" />
+    <img alt="Libraries.io" src="https://img.shields.io/librariesio/release/npm/nestjs-session">
   </a>
-  <img alt="Dependabot" src="https://badgen.net/github/dependabot/iamolegga/nestjs-session" />
+  <img alt="Dependabot" src="https://badgen.net/github/dependabot/iamolegga/nestjs-session">
   <img alt="Supported platforms: Express" src="https://img.shields.io/badge/platforms-Express-green" />
 </p>
 
@@ -105,6 +105,17 @@ npm start
 For Redis example, you should start Redis on localhost:6379.
 If you have Docker installed you can start Redis image by `npm run redis` from `redis-store` directory.
 
+---
+
+<p align="center"><b>This is the documentation for v5. Compatibility with earlier versions:</b></p>
+
+| nestjs-session | NestJS | Node.js |
+| -------------- | ------ | ------- |
+| v5             | 11.2+, 12 | >=22.12 |
+| [v4](https://github.com/iamolegga/nestjs-session/tree/4.0.0#readme) | 8, 9, 10, 11 | >=18 |
+
+---
+
 ## Install
 
 ```sh
@@ -147,6 +158,19 @@ Accept `NestSessionAsyncOptions`. Returns NestJS `DynamicModule` for import.
 - `useFactory` - **required** - method, that returns `NestSessionOptions`.
 
 ## Migration
+
+### v5
+
+NestJS 8, 9 and 10 are dropped: `@nestjs/common` is now a peer dependency with the range `^11.2.0 || ^12.0.0`, and Node.js >=22.12 is required. The package is also published from `dist/` with an `exports` map instead of copying the build output into the package root, so deep imports such as `nestjs-session/retriesMiddleware` no longer resolve — import from the package root.
+
+The default route changed from `*` to `{/*splat}`, which fixes the global prefix root. With `app.setGlobalPrefix('v1')` and no explicit `forRoutes`:
+
+| request | before | after |
+| -------------- | -------------- | ------- |
+| `/v1` | **no session** | session |
+| `/v1/anything` | session | session |
+
+NestJS converted the old `*` into `/v1/{*path}`, which matches everything under the prefix but not the prefix itself. Nothing changes if you pass your own `forRoutes`, or if you do not set a global prefix; paths excluded from the global prefix keep the session middleware as before.
 
 ### v2
 
